@@ -66,12 +66,11 @@ jobs:
 
                  env:
                       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                 with:
 
                - name: Upload artifacts
                  uses: actions/upload-artifact@v3
                  if: "!startsWith(github.ref, 'refs/tags/v')"
                  with:
-                   name: ${{ matrix.platform }}-build
-                   path: ${{ steps.build.outputs.artifactPaths }}
+                      name: ${{ matrix.platform }}-build
+                      path: ${{ steps.build.outputs.artifactPaths }}
 
