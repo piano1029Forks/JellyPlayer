@@ -45,6 +45,7 @@ jobs:
 
                - name: Build the app
                  uses: tauri-apps/tauri-action@v0
+                 id: build
 
                  env:
                       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,3 +55,10 @@ jobs:
                       releaseBody: "See the assets to download and install this version."
                       releaseDraft: true
                       prerelease: false
+
+               - name: Upload artifacts
+                 uses: actions/upload-artifact@v3
+                 with:
+                   name: ${{ matrix.platform }}-build
+                   path: ${{ steps.build.outputs.artifactPaths }}
+
